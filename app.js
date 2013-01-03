@@ -12,8 +12,14 @@ var debug = true;
 
 var wunder = new WunderNodeClient(apikey,debug, country, city);
 
+app.configure(function() {
+  app.set('view engine', 'ejs');
+  app.set('views', __dirname + '/views');
+  app.use(express.static(__dirname + '/public'));
+});
+
 app.get("/", function(req, res) {
-  res.send("hello world")
+  res.render("home", {})
 })
 
 app.get('/conditions', function(req, res){
