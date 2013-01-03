@@ -1,5 +1,6 @@
 var WunderNodeClient = require("./node_modules/wundernode/WunderNodeClient.js");
 var express = require('express')
+  , less = require("less")
   , fs = require("fs")
 
 var app = express();
