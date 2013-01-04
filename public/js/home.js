@@ -2,10 +2,9 @@ var Weathermood = {
 
   $el: $("#container"),
 
-  template: new EJS({url: 'templates/home.ejs'}),
+  template: new EJS({url: 'templates/weathermood.ejs'}),
 
   initialize: function() {
-    this.geocoder = new google.maps.Geocoder()
     this.getLocation()
   },
 
