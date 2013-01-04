@@ -29,7 +29,7 @@ app.get('/conditions', function(req, res){
             if (err){
                     console.log('errors: ' + err);
             }
-            res.end(obj);
+            res.json(obj);
     }, req.query.loc);
 });
 
