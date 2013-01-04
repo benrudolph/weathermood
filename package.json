@@ -13,5 +13,9 @@
   "engines": {
     "node": "0.8.x",
     "npm": "1.1.x"
+  },
+  "subdomain": "brudolph.weathermood",
+  "scripts": {
+    "start": "app.js"
   }
 }
