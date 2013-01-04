@@ -1,3 +1,5 @@
+/* Contains logic for getting location and weather and playing music */
+
 var Weathermood = {
 
   $el: $("#container"),
@@ -13,12 +15,12 @@ var Weathermood = {
   },
 
   getLocation: function() {
-    navigator.geolocation.getCurrentPosition(this.success.bind(this), this.error.bind(this))
+    navigator.geolocation.getCurrentPosition(this.onLocationSuccess.bind(this), this.error.bind(this))
   },
 
   error: function() {},
 
-  success: function(position) {
+  onLocationSuccess: function(position) {
     console.log(position)
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;
@@ -30,12 +32,16 @@ var Weathermood = {
       method: "GET",
       data: { loc: lat + "," + lng },
       url: "/conditions",
-      success: function(data) {
-        this.render(JSON.parse(data))
-      }.bind(this)
+      success: this.onConditionsSuccess.bind(this)
     })
+  },
+
+  onConditionsSuccess: function(data) {
+    this.render(JSON.parse(data))
   }
 
 }
 
-Weathermood.initialize()
+$(document).ready(function() {
+  Weathermood.initialize()
+})

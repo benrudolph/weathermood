@@ -1,4 +1,16 @@
 <div>
   <%= current_observation.display_location.full %>
   <%= current_observation.weather %>
+
+  <div id="audio-player">
+    <audio controls loop="loop">
+    <source src="
+    <% if (window.Weathers.hasOwnProperty(current_observation.weather.toLowerCase())) { %>
+      <%= window.Weathers[current_observation.weather.toLowerCase()] %>
+    <% } else { %>
+      <%= 'audio/rainy.mp3' %>
+    <% } %>
+    " type="audio/mp3">
+    </audio>
+  </div>
 </div>
