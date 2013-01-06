@@ -5,8 +5,8 @@ function slat(parent, width, height, orientation, light)
 	//public functions//
 	this.init = function(ID, Class, z_index)
 	{
-		_id = ID;
-		_class = Class;
+		_id      = ID;
+		_class   = Class;
 		_z_index = z_index;
 	};
 
@@ -51,77 +51,77 @@ function slat(parent, width, height, orientation, light)
 
 
 	//private variables//
-	var _parent			= parent;
-	var _orientation	= orientation;
-	var _width			= width;
-	var _height			= height;
-	var _light			= light;
-	var _id				= "slat";
-	var _class			= "slat_class";
-	var _z_index		= 0;
+	var _parent       = parent;
+	var _orientation  = orientation;
+	var _width        = width;
+	var _height	      = height;
+	var _light        = light;
+	var _id	          = "slat";
+	var _class        = "slat_class";
+	var _z_index      = 0;
 }
 
 //blinds container
 var blinds = 
 {
-	_parent				: "body",
-	_background_light	: "sunny",
-	_screen_width		: $("body").width(),
-	_screen_height		: $("body").height(),
-	_number_of_slats	: 20,
-	_slat_min_height	: 2,
-	_slat_max_height	: this._screen_height / this._number_of_slats,
-	_slat_height		: 2,
-	_footer_slat_height	: 30,
-	_blinds_max_height	: this._screen_height,
-	_blinds_height 		: this._slat_height * this._number_of_slats + this._footer_slat_height,
-	_blinds_width 		: this._screen_width,
+	_parent             : "body",
+	_background_light   : "sunny",
+	_screen_width       : $("body").width(),
+	_screen_height      : $("body").height(),
+	_number_of_slats    : 20,
+	_slat_min_height    : 2,
+	_slat_max_height    : this._screen_height / this._number_of_slats,
+	_slat_height        : 2,
+	_footer_slat_height : 30,
+	_blinds_max_height  : this._screen_height,
+	_blinds_height      : this._slat_height * this._number_of_slats + this._footer_slat_height,
+	_blinds_width       : this._screen_width,
 
-	_slats				: [],
-	_footer_slat		: {},
-	_blinds_id			: "blind_container", 
-	_blinds_class		: "blinds", 
-	_dragging			: false,
-	_dragpos			: {},
+	_slats              : [],
+	_footer_slat        : {},
+	_blinds_id          : "blind_container", 
+	_blinds_class       : "blinds", 
+	_dragging           : false,
+	_dragpos            : {},
 
 	init: function(JSONargs)
 	{
 		if (JSONargs.hasOwnProperty("parent"))
-			this._parent 			= JSONargs.parent;
+			this._parent           = JSONargs.parent;
 		if (JSONargs.hasOwnProperty("background_light"))
-			this._background_light 	= JSONargs.background_light;
+			this._background_light = JSONargs.background_light;
 		if (JSONargs.hasOwnProperty("screen_width"))
-			this._screen_width 		= JSONargs.screen_width;
+			this._screen_width     = JSONargs.screen_width;
 		if (JSONargs.hasOwnProperty("screen_height"))
 		{
-			this._screen_height 	= JSONargs.screen_height;
-			this._slat_max_height 	= this._screen_height / 
-										this._number_of_slats;
+			this._screen_height    = JSONargs.screen_height;
+			this._slat_max_height  = this._screen_height / 
+							this._number_of_slats;
 		}
 		if (JSONargs.hasOwnProperty("number_of_slats"))
 		{
-			this._number_of_slats 	= JSONargs.number_of_slats;
-			this._slat_max_height 	= this._screen_height / 
-										this._number_of_slats;
+			this._number_of_slats  = JSONargs.number_of_slats;
+			this._slat_max_height  = this._screen_height / 
+							this._number_of_slats;
 		}
 		if (JSONargs.hasOwnProperty("blinds_max_height"))
 			this._blinds_max_height = JSONargs.blinds_max_height;
 		if (JSONargs.hasOwnProperty("blinds_width"))
-			this._blinds_width 		= JSONargs.blinds_width;
+			this._blinds_width     = JSONargs.blinds_width;
 
 
 		for (var i = 0; i < this._number_of_slats; i ++)
 		{
 			var new_slat = new slat(
-							this._blinds_id, this._screen_width, 
-							this._slat_height, i % 2, 
-							this._background_light);
+				this._blinds_id, this._screen_width, 
+				this._slat_height, i % 2, 
+				this._background_light);
 			new_slat.init("slat_" + i, "slats", this._number_of_slats - i);
 			this._slats.push(new_slat);
 		}
 		this._footer_slat = new slat(this._blinds_id, this._screen_width, 
-								this._footer_slat_height, 0,
-								this._background_light);
+			this._footer_slat_height, 0,
+			this._background_light);
 		this._footer_slat.init("footer_slat", "blindsBorder");
 	},
 
