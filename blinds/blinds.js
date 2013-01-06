@@ -51,12 +51,12 @@ function slat(parent, width, height, orientation, light)
 
 
 	//private variables//
-	var _parent 		= parent;
-	var _orientation 	= orientation;
+	var _parent			= parent;
+	var _orientation	= orientation;
 	var _width			= width;
 	var _height			= height;
-	var _light 			= light;
-	var _id 			= "slat";
+	var _light			= light;
+	var _id				= "slat";
 	var _class			= "slat_class";
 	var _z_index		= 0;
 }
@@ -77,9 +77,9 @@ var blinds =
 	_blinds_height 		: this._slat_height * this._number_of_slats + this._footer_slat_height,
 	_blinds_width 		: this._screen_width,
 
-	_slats 				: [],
+	_slats				: [],
 	_footer_slat		: {},
-	_blinds_id 			: "blind_container", 
+	_blinds_id			: "blind_container", 
 	_blinds_class		: "blinds", 
 	_dragging			: false,
 	_dragpos			: {},
