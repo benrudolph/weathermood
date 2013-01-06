@@ -1,0 +1,29 @@
+#footer_slat
+{
+	background-color: #929494;
+	border: 1px solid #696969;
+	-moz-box-shadow: 0px 10px 10px 0px #888;
+	-webkit-box-shadow: 0px 10px 10px 0px#888;
+	box-shadow: 0px 5px 5px 0px #888;
+}
+.slats
+{
+	position: relative;
+	border-bottom-left-radius: 20px 10px;
+	border-bottom-right-radius: 20px 10px;
+
+
+	background-image: linear-gradient(bottom, rgb(51,58,59) 28%, rgb(232,255,255) 74%);
+	background-image: -o-linear-gradient(bottom, rgb(51,58,59) 28%, rgb(232,255,255) 74%);
+	background-image: -moz-linear-gradient(bottom, rgb(51,58,59) 28%, rgb(232,255,255) 74%);
+	background-image: -webkit-linear-gradient(bottom, rgb(51,58,59) 28%, rgb(232,255,255) 74%);
+	background-image: -ms-linear-gradient(bottom, rgb(51,58,59) 28%, rgb(232,255,255) 74%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.28, rgb(51,58,59)),
+		color-stop(0.74, rgb(232,255,255))
+	);
+}
