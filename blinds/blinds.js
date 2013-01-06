@@ -1,8 +1,17 @@
 var htmlblindid = "blindapp";
 
+/* Slat
+ * ----------------------------------------------------
+ * Individual screen slat object. To use, call init, 
+ * then draw. To resize (animate) call update 
+ * dimensions with height and width arguments
+ *-----------------------------------------------------
+ */
 function slat(parent, width, height, orientation, light)
 {
 	//public functions//
+
+	//	Initializes the slat object.
 	this.init = function(ID, Class, z_index)
 	{
 		_id      = ID;
@@ -10,6 +19,9 @@ function slat(parent, width, height, orientation, light)
 		_z_index = z_index;
 	};
 
+	//	Draws the slat object. Removes any instances
+	//	of an old object with the same ID before appending
+	//	a new div to the parent object
 	this.draw = function()
 	{
 		$("#" + _id).remove();
@@ -20,6 +32,8 @@ function slat(parent, width, height, orientation, light)
 
 	};
 
+	//	Changes css width and height. Pass in
+	//	JSON {"width": width, "height": height}
 	this.update_dimensions = function(JSONargs)
 	{
 		if (JSONargs.hasOwnProperty("width"))
@@ -34,16 +48,19 @@ function slat(parent, width, height, orientation, light)
 		}
 	};
 
+	//	Returns dimensions JSON object
 	this.get_dimensions = function()
 	{
 		return {"width": _width, "height": _height};
 	};
 
+	//	Adjusts lighting
 	this.set_light = function(light)
 	{
 		_light = light;
 	};
 
+	//	adjusts orientation of slat
 	this.set_orientation = function(orientation)
 	{
 		_orientation = orientation;
@@ -54,7 +71,7 @@ function slat(parent, width, height, orientation, light)
 	var _parent       = parent;
 	var _orientation  = orientation;
 	var _width        = width;
-	var _height	      = height;
+	var _height       = height;
 	var _light        = light;
 	var _id	          = "slat";
 	var _class        = "slat_class";
@@ -84,6 +101,8 @@ var blinds =
 	_dragging           : false,
 	_dragpos            : {},
 
+	//	Parses JSON arguments and then initializes
+	//	all slats and the footers
 	init: function(JSONargs)
 	{
 		if (JSONargs.hasOwnProperty("parent"))
@@ -125,6 +144,8 @@ var blinds =
 		this._footer_slat.init("footer_slat", "blindsBorder");
 	},
 
+	//	Animation function moves blinds down a 
+	//	positive distance
 	moveBlindsDown: function(distance)
 	{
 		for (var i = 0; i < this._number_of_slats; i ++)
@@ -158,7 +179,9 @@ var blinds =
 
 		}
 	},
-
+	
+	//	Animation function moves blinds up
+	//	negative distance
 	moveBlindsUp: function(distance)
 	{
 		for (var i = this._number_of_slats - 1; i > -1; i --)
@@ -188,6 +211,7 @@ var blinds =
 		}
 	},
 
+	//	Callback handler for mouse move event 
 	blindsmousemove: function(event)
 	{
 		if (event.clientY > blinds._dragpos.y)
@@ -199,6 +223,7 @@ var blinds =
 		event.preventDefault();
 	},
 
+	//	Callback handler for mouse down event
 	blindsmousedown: function(event)
 	{
 		this._dragging = true;
@@ -208,6 +233,7 @@ var blinds =
 		event.preventDefault();
 	},
 
+	//	Callback handler for mouse up event
 	blindsmouseup: function(event)
 	{
 		this._dragging = false;
@@ -216,6 +242,7 @@ var blinds =
 		event.preventDefault();
 	},
 
+	//	Draws blinds
 	draw: function()
 	{
 		$("#" + this._blinds_id).remove();
@@ -236,8 +263,7 @@ var blinds =
 $(function()
 {
 	blinds.init({"screen_width": $("body").width(),
-					"screen_height": $("body").height(),
-					"parent": htmlblindid});
+			"screen_height": $("body").height(),
+			"parent": htmlblindid});
 	blinds.draw();
-
 });
